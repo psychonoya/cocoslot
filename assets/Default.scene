@@ -1292,7 +1292,8 @@
     "row1": null,
     "row2": null,
     "row3": null,
-    "bonusPoints": 10,
+    "bonusPoints": 50,
+    "standardStreakPoints": 20,
     "_id": "48ZPDkKzFG4K0RjWahWGIz"
   },
   {
