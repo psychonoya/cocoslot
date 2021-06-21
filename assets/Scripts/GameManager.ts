@@ -15,7 +15,7 @@ export class GameManager extends Component {
         type:Label
     })
     bonusText: Label |null = null;
-    // This is a the bonusText node we have in our scene, set to null since we will pass the reference through  our engine
+    // This is a the coinsText node we have in our scene, set to null since we will pass the reference through  our engine
     @property({
         type:Label
     })
@@ -50,10 +50,10 @@ export class GameManager extends Component {
     // This is the standard streak points given
     @property
     standardStreakPoints: number = 2;
-
+    // This is the number of our starting coins
     @property
     coins: number = 100;
-
+    // This is the number of our cost for each spin
     @property
     cost: number = 5;
 
@@ -70,13 +70,20 @@ export class GameManager extends Component {
                     this.row1.colorNumber == 2 && this.row2.colorNumber == 2 && this.row3.colorNumber == 2 ||
                     this.row1.colorNumber == 3 && this.row2.colorNumber == 3 && this.row3.colorNumber == 3 )
                 {
+                    // Adding bonus points to our current points
                     this.currentPoints =  +this.currentPoints  +   +this.bonusPoints;
+                    // Adding coins equal to the bonus points
+                    this.coins =  +this.coins  +   +this.bonusPoints;
                     if (this.bonusText) {
                         //Changing the text every time we spin, if get the bonus than we show how many points we got
                         this.bonusText.string = "!!!BONUS +"+this.bonusPoints+ "!!!";
-                        this.coins =  +this.coins  +   +this.bonusPoints;
+
                     }
                 }
+
+                // Same logic goes for the other cases, but changing the values of coins and points given.
+
+
                 // otherwise every time we check if we have 2 rows having the same color, and if they are near we get +1
                 else if (this.row1.colorNumber == 1 && this.row2.colorNumber == 1 ||
                     this.row1.colorNumber == 2 && this.row2.colorNumber == 2 ||
@@ -113,7 +120,7 @@ export class GameManager extends Component {
 
         }
         if (this.pointsText) {
-            // Every time we spin the current points are update, UI can also be updated per frame but since we don't have the need in this case, we are updating it only when spin
+            // Every time we spin the current score is update
             this.pointsText.string = "Score: " + this.currentPoints;
         }
 
